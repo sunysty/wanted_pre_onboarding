@@ -8,6 +8,7 @@ const Modal = () => {
 
   return(
     <>
+    <Container>
         {
           modalState
           ?
@@ -16,7 +17,7 @@ const Modal = () => {
               <Title>Modal</Title>
               <ModalBox>
                 <CloseBtn onClick={handleClickModalOff}>x</CloseBtn>
-                <Text>HELLO WANTED !</Text>
+                <Text>HELLO CODESTATES !</Text>
               </ModalBox>
             </ModalBackground>
           </>
@@ -28,18 +29,30 @@ const Modal = () => {
             </ModalBackground>
           </>
         }
+        </Container>
     </>
   )
 }
 export default Modal;
 
+const Container = styled.div`
+  width:80vw;
+  margin:0 auto;
+  border:1px solid #ccc;
+  border-radius:10px;
+  box-sizing:border-box;
+`
+
 const ModalBackground = styled.div`
   width:100%;
-  height:250px;
+  height:300px;
   background:${ (props) => props.color };
 `
 
 const Title = styled.h1`
+  font-size:20px;
+  padding:10px;
+  margin:0;
 `
 
 const ModalBox = styled.div`
@@ -52,8 +65,10 @@ const ModalBox = styled.div`
 
   position:relative;
   left:50%;
-  transform:translate(-50%,0);
-`
+  top:50%;
+  transform:translate(-50%,-100%);
+
+  `
 
 const CloseBtn = styled.span`
   position:absolute;
@@ -77,11 +92,11 @@ const OpenBtn = styled.div`
   justify-content: center;
   align-items:center;
   background:purple;
+  margin-top:80px;
   position:absolute;
   left:50%;
-  transform:translate(-50%);
+  transform:translateX(-50%);
   color:#fff;
   border-radius:25px;
-
   cursor:pointer;
 `
