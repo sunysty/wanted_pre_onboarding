@@ -2,38 +2,41 @@ import React,{useState} from 'react';
 import styled from 'styled-components'
 
 const Tag = () => {
-
-  const [text,setText] = useState([
-    {id:1, contents:'hey'},
-    ])
-  const clickDeleteTagHandler = () => {}
-
-
+  
+  const [tagList,setTagList]= useState([])
+  const [text,setText] = useState()
+  const [tagId,setTagId] = useState(0)
+  const tagNew = {text, tagId:tagId}
+  
   const keyPressInputHandler = (e)=>{
     if(e.key === 'Enter'){
       setText(e.target.value)
-      return(
-        <TagItem>
-          {text[1].contents}
-          <DeleteItem onClick={clickDeleteTagHandler}>x</DeleteItem>
-        </TagItem>
-      )
+      setTagId(tagId+1)
+      setTagList([...tagList,tagNew])
     }
-    console.log('>>',text)
+    
   }
 
+  const clickDeleteTagHandler = (e) => {
+    const onRemove = textId => setTagList(tagList.filter(tagNew => tagNew.tagId !== tagId))
+    onRemove();
+  }
+ 
   return( 
     <>
     <Container>
       <Title>Tag</Title>
       <TagBox>
-        <TagItem>
-        {text[0].contents}
+        {tagList.map((el,i) => (
+        <TagItem key={i}>
+          {el.text}
           <DeleteItem onClick={clickDeleteTagHandler}>x</DeleteItem>
         </TagItem>
+        ))
+        }
         <Input 
           type='text' 
-          placeholder='Press enter to add tags' 
+          placeholder='Press enter to add tags'
           onKeyPress={keyPressInputHandler}
         />
       </TagBox>
