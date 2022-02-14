@@ -4,16 +4,46 @@ import styled from 'styled-components';
 
 const Tab = () => {
 
-  const [tabIdx, setTabIdx] = useState(null); 
+  const [tabIdx, setTabIdx] = useState(''); 
+  const [firstTab,setFirstTab] = useState(false);
+  const [secondTab,setSecondTab] = useState(false);
+  const [thirdTab,setThirdTab] = useState(false);
+
+  const firstTabHandler = ()=> {
+    setSecondTab(false)  
+    setThirdTab(false)
+    setFirstTab(!firstTab)
+    setTabIdx('FIRST')
+  }
+
+  const secondTabHandler = () => {
+    setFirstTab(false)  
+    setThirdTab(false)
+    setSecondTab(!secondTab)
+    setTabIdx('SECOND')
+  }
+
+  const thirdTabHandler = () => {
+    setFirstTab(false)
+    setSecondTab(false)
+    setThirdTab(!thirdTab)
+    setTabIdx('THIRD')
+  }
 
   return( 
     <>
       <Container>
         <Title>Tab</Title>
         <TabBox>
-          <TabItem onClick={()=>setTabIdx('ONE')}>Tab1</TabItem>
-          <TabItem onClick={()=>setTabIdx('TWO')}>Tab2</TabItem>
-          <TabItem onClick={()=>setTabIdx('THREE')}>Tab3</TabItem>
+          <TabItem onClick={firstTabHandler} active={firstTab}>
+                    Tab1
+          </TabItem>          
+          <TabItem onClick={secondTabHandler} active={secondTab}>
+                    Tab2
+          </TabItem>
+          <TabItem onClick={thirdTabHandler} active={thirdTab}>
+                    Tab3
+          </TabItem>
         </TabBox>
         <ContentsBox>
           Tab menu {tabIdx}
@@ -24,6 +54,8 @@ const Tab = () => {
 }
 
 export default Tab;
+
+
 
 const Container = styled.div`
   width:80vw;
@@ -46,8 +78,8 @@ const TabBox = styled.div`
   display:flex;
   flex-direction:row;
   margin: 0 auto;
-  background:#ddd;
-`
+  background:#eee;
+  `
 
 const TabItem = styled.div`
   width:20vw;
@@ -57,11 +89,11 @@ const TabItem = styled.div`
   transform:translateX(5vw);
   padding-left:10px;
   box-sizing:border-box;
-  color:#aaa;
   font-weight:bold;
-  transition:0.2s ease-out;
+  ${props => props.active ? `background:purple` : `background:#eee`};
+  ${props => props.active ? `color:#fff` : `color:#aaa`};
   &:hover{
-    background: purple;
+    background:purple;
     cursor:pointer;
     color:#fff;
   }
