@@ -49,17 +49,18 @@ const Title = styled.h1`
 `
 
 const ToggleBox = styled.div`
-    width:60px;
-    height:30px;
+    width:70px;
+    height:35px;
     background:${props => props.color};
     border-radius:20px;
     margin:100px auto 10px;
-    padding:2px;
+    padding:5px;
     box-sizing:border-box;
     display:flex;
     flex-direction:row;
     justify-content:${props => props.jc};
-    transition: all 0.5s ease-out;
+    transition: 0.5s cubic-bezier(.17,.67,.83,.67);
+    
 `
 
 const ToggleBtn = styled.button`
@@ -68,7 +69,8 @@ const ToggleBtn = styled.button`
     border-radius:50%;
     border:none;
     background:#fff;
-    transition:ease-out 0.1s;
+    cursor:pointer;
+    transition: 1s cubic-bezier(.17,.67,.83,.67);
 
 `
 
