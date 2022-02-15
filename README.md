@@ -75,7 +75,8 @@
 1. 태그 생성하기 :
 
     - tagList 배열 만들기 : 키-벨류로 text와 id를 가지고 있는 객체배열(json) 만든다.
-    - handleCreate함수 만들기 : input에 입력한 값(e.target.value)은 setText훅을 이용하여 text값을 업데이트 시킨다. 업데이트된 text값은 슷자로 id값을 부여해서, tagList 배열에 넣는다. 엔터키이벤트(onKeyPress)가 일어날때마다 위 동작이 실행된다.
+    - onChange함수 만들기 : input에 입력한 값(e.target.value)은 setText훅을 이용하여 text값을 업데이트 시킨다.
+    - onKeypress함수 만들기 : onChange함수로 먼저실행한다. 엔터키이벤트(onKeyPress)가 일어나면, text 와 id 가 업데이트되어 tagList 배열에 추가된다. input값을 null로 다시 비워준다.
     - map을 이용해서 tagList데이터를 뿌려주기
 
 2. 태그 제거하기 :
@@ -86,9 +87,7 @@
 
 -   처음에 삭제를 state만으로 해결해 보려고 했다. 결국 id값을 주고, tagList의 형태를 json형식으로 바꿈으로써 해결했다.
 -   삭제 조건을 if형식으로 줘야하나 고민하다가, tagList의 경우 배열이고 filter를 이용해서 같지 않은 것들만 남긴다는 아이디어를 얻어서 해결했다.
--   처음에 빈배열이 뜬다 => 콘솔에 찍어보니, enter이벤트가 일어나기전에 text값을 업데이트 해주어야 tagList에 text를 엔터를 누른직후 추가가 될 수 있었다. onKeyPress이벤트만 이용해서 하려고 하다가 이부분을 놓치고 고민을 꽤 오래 했다. onChange로 시행하는 함수를 하나 만들어서 text의 value를 업데이트시키고, 이후 enter를 누르면 배열에 리스트가 담기도록 했다.
-
-엔터버튼 이전에 setText로 text값을 변화시키고, setTagList로 tag를 추가하는 것이 시행되어야 할것 같다. 2. input 값 비워주기
+-   태그를 생성하면, 처음에는 빈배열이 만들어지고, 하나씩 입력이 밀렸다. 콘솔에 찍어보니, enter이벤트가 일어나기전에 text값을 업데이트 해주어야 tagList에 text를 엔터를 누른직후 추가가 될 수 있었다. onKeyPress이벤트만 이용해서 하려고 하다가 이부분을 놓치고 고민을 꽤 오래 했다. onChange로 시행하는 함수를 하나 만들어서 text의 value를 업데이트시키고, 이후 enter를 누르면 배열에 리스트가 담기도록 했다.
 
 ### 실행방법
 
