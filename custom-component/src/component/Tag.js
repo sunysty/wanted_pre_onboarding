@@ -12,13 +12,17 @@ const Tag = () => {
             text: 'JJang',
         },
     ]);
-    const [text, setText] = useState();
+    const [text, setText] = useState('');
 
-    const handleCreate = (e) => {
+    const onChange = (e) => {
+        setText(e.target.value);
+    };
+
+    const onKeyPress = (e) => {
+        onChange(e);
         if (e.key === 'Enter') {
-            setText(e.target.value);
             setTagList(tagList.concat({ id: tagList.length, text: text }));
-            console.log('>>', tagList);
+            e.target.value = null;
         }
     };
 
@@ -34,7 +38,8 @@ const Tag = () => {
                 <TagBox>
                     {tagList.map((tag, i) => (
                         <TagItem key={i}>
-                            {tag.text}
+                            {/* {tag.text} */}
+                            {tagList[i].text}
                             <DeleteItem onClick={() => handleRemove(tag)}>
                                 x
                             </DeleteItem>
@@ -43,7 +48,8 @@ const Tag = () => {
                     <Input
                         type='text'
                         placeholder='Press enter to add tags'
-                        onKeyPress={handleCreate}
+                        onChange={onChange}
+                        onKeyPress={onKeyPress}
                     />
                 </TagBox>
             </Container>
@@ -71,11 +77,12 @@ const Title = styled.h1`
 const TagBox = styled.div`
     width: 80%;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
     border: 1px solid #999;
     padding: 10px;
-    margin: 0 auto;
+    margin: 70px auto 0;
     box-sizing: border-box;
     border-radius: 5px;
 `;
