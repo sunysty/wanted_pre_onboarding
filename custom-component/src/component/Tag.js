@@ -28,7 +28,6 @@ const Tag = () => {
 
     const handleRemove = (tag) => {
         setTagList(tagList.filter((tagList) => tagList.id !== tag.id));
-        console.log('<?', tag.id, tagList);
     };
 
     return (
