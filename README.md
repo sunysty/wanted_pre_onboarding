@@ -1,8 +1,8 @@
 ## WANTED 프리온보딩 코스 지원과제 : 6가지 기능 라이브러리 없이 구현하기
 
-### 기간 | 22.02.07 - 22.02.15(7일)
-
 ### <a href="https://codestates.notion.site/5f83f7a007664f1abcf0cdbcbbbbd521">문제</a>
+
+### 기간 | 22.02.07 - 22.02.15(7일)
 
 ## 1. Toggle
 
